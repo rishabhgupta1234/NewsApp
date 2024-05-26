@@ -12,11 +12,11 @@ export default class App extends Component {
 			<>
 				<Router>
 					<Navbar />
-					{/* <h1 className="text-center">Top - Headlines</h1> */}
+
 					<Routes>
 						<Route
 							exact
-							path="/home"
+							path="/"
 							element={<News key="general" pageSize={16} country="in" category="general" />}></Route>
 						<Route
 							exact
