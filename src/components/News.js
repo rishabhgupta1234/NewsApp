@@ -10,6 +10,7 @@ export class News extends Component {
 		country: "in",
 		pageSize: 8,
 		category: "general",
+		// setProgress: function () {},
 	};
 
 	static propTypes = {
@@ -31,17 +32,20 @@ export class News extends Component {
 	}
 
 	async componentDidMount() {
+		this.props.setProgress(10);
 		console.log("inside cdm");
 		let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=04a18f955bb547f0b2f4b243b4ec3803&page=1&pageSize=${this.props.pageSize}`;
 		this.setState({ loading: true });
 		let data = await fetch(url);
 		let parsedData = await data.json();
-		console.log(parsedData);
+		this.props.setProgress(50);
+		// console.log(parsedData);
 		this.setState({
 			articles: parsedData.articles,
 			totalResults: parsedData.totalResults,
 			loading: false,
 		});
+		this.props.setProgress(100);
 	}
 	handlePrevClick = async () => {
 		console.log("Previous");
